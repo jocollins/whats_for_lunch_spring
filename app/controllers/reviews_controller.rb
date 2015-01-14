@@ -1,5 +1,5 @@
 class ReviewsController < ApplicationController
-  before_action :set_review, only: [:show, :edit, :update, :destroy]
+  before_action :set_review, only: [:edit, :update, :destroy]
   before_action :authenticate_user!
 
   respond_to :html
@@ -21,11 +21,12 @@ class ReviewsController < ApplicationController
   def edit
   end
 
-  def create
-    @review = Review.new(review_params)
-    @review.user_id = current_user.id
-    @review.save
-    respond_with(@review)
+  def create 
+    @review = Review.new(review_params) 
+    @review.user_id = current_user.id 
+
+    flash[:notice] = "Review was successfully created." if @review.save 
+    respond_with(@review, :location => root_path)
   end
 
   def update

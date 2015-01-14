@@ -1,5 +1,6 @@
 class ReviewsController < ApplicationController
   before_action :set_review, only: [:edit, :update, :destroy]
+  before_action :set_restaurant 
   before_action :authenticate_user!
 
   respond_to :html
@@ -23,7 +24,8 @@ class ReviewsController < ApplicationController
 
   def create 
     @review = Review.new(review_params) 
-    @review.user_id = current_user.id 
+    @review.user_id = current_user.id
+    @review.restaurant_id = @restaurant.id 
 
     flash[:notice] = "Review was successfully created." if @review.save 
     respond_with(@review, :location => root_path)
@@ -42,6 +44,10 @@ class ReviewsController < ApplicationController
   private
     def set_review
       @review = Review.find(params[:id])
+    end
+
+    def set_restaurant
+      @restaurant = Restaurant.find(params[:restaurant_id])
     end
 
     def review_params

@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
 
+  resources :restaurants
+
   devise_for :users
   resources :restaurants do
     collection do

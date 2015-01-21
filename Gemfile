@@ -15,7 +15,7 @@ gem 'rails_12factor', group: :production
 gem 'pg', group: :production
 gem "fog"
 gem "figaro"
-gem 'mini_magick'
+gem "mini_magick"
 gem 'devise'
 gem 'searchkick'
 gem 'carrierwave'

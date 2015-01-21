@@ -9,7 +9,7 @@ class RestaurantsController < ApplicationController
   end
 
   def show
-    respond_with(@restaurant)
+    @reviews = Review.where(restaurant_id: @restaurant.id)
   end
 
   def new
